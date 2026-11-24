@@ -1,0 +1,5 @@
+dependencies {
+    implementation project(':core')
+    implementation 'org.apache.pdfbox:pdfbox:2.0.31'
+    implementation 'org.apache.pdfbox:fontbox:2.0.31'
+}

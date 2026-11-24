@@ -16,3 +16,15 @@ node_modules/
 __pycache__/
 .venv/
 venv/
+
+# build output / runtime data
+build/
+.gradle/
+data/
+*.log
+
+# agent runtime state (contains keys/journals) - never commit
+*.tsv
+*.ndjson
+vault.bin
+spool/

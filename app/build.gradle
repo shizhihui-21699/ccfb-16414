@@ -1,0 +1,8 @@
+plugins { id 'application' }
+dependencies {
+    implementation project(':core')
+    implementation project(':drivers')
+    implementation project(':server')
+    implementation project(':agent')
+}
+application { mainClass = 'com.secureprint.app.DemoMain' }

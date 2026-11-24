@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+}
+
+allprojects {
+    group = 'com.secureprint'
+    version = '1.0.0'
+}
+
+subprojects {
+    apply plugin: 'java'
+
+    java {
+        toolchain { languageVersion = JavaLanguageVersion.of(21) }
+    }
+
+    repositories { mavenCentral() }
+
+    tasks.withType(JavaCompile).configureEach {
+        options.encoding = 'UTF-8'
+        options.compilerArgs << '-Xlint:all,-serial,-processing,-this-escape,-missing-explicit-ctor' << '-Werror'
+    }
+
+    tasks.withType(Test).configureEach {
+        useJUnitPlatform()
+        testLogging {
+            events 'passed', 'skipped', 'failed'
+            exceptionFormat 'full'
+        }
+    }
+
+    dependencies {
+        implementation 'com.fasterxml.jackson.core:jackson-databind:2.17.2'
+        implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.17.2'
+        implementation 'org.slf4j:slf4j-api:2.0.13'
+        runtimeOnly 'org.slf4j:slf4j-simple:2.0.13'
+        testImplementation platform('org.junit:junit-bom:5.10.2')
+        testImplementation 'org.junit.jupiter:junit-jupiter'
+        testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    }
+}
